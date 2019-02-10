@@ -2,6 +2,5 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/bilic/workspace2/ext_bib/opencsv-4.4.jar" sourcepath="C:/Users/bilic/AppData/Local/Temp/.org.sf.feeling.decompiler1549718333237/source/opencsv-4.4-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
