@@ -1,5 +1,5 @@
 
-public interface Configuration {
+public abstract interface Configuration {
 	public static final String DELIMITER = "\\|";
 	
 	public static final String FILE_PATH="";
@@ -13,5 +13,8 @@ public interface Configuration {
 	public static final String COMMENTS_HEADER="Помилки в ";
 	public static final String COMMENTS_SHOP1="OWN-Shop";
 	public static final String COMMENTS_SHOP2="E-Shop";
+	
+	public static final String ORGANIZATION = "KS";
+	public static final String YEAR = "2019";
 	
 }

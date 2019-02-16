@@ -36,7 +36,25 @@ public class Reader implements Configuration {
 			} catch (IOException e) {
 				System.out.println("IOException - operation is denied");
 				e.printStackTrace();
-			} 
+			}
+			try {
+				reader = new InputStreamReader(new FileInputStream(
+						FILE_PATH+i+FILE_NAME+"."+FILE_FORMAT
+						), Charset.forName("utf8").newDecoder());
+				
+				scanner = new Scanner(reader);
+				scanner.useDelimiter("(\\r)?\\n");
+				scanner.nextLine();
+				
+				while(scanner.hasNext()) {
+					String expression = scanner.next();
+					expression=expression.replaceAll("\\|\\|.+$", "");
+					if(expression!=null) this.string+=expression+DELIMITER;
+				}
+				reader.close();
+			} catch (Exception e) {
+				
+			}
 	}
 	public String getString() {
 		return this.string;
