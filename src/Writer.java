@@ -43,8 +43,7 @@ public class Writer implements Configuration {
 			writer.close();
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found!");
-			e.printStackTrace();
+			System.out.println("File will be created!");
 		} catch (IOException e) {
 			System.out.println("IOEception");
 			e.printStackTrace();
