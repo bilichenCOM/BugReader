@@ -1,6 +1,9 @@
+package sys;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import config.Configuration;
 
 
 public class CsvReader implements Configuration {	
@@ -49,7 +52,7 @@ public class CsvReader implements Configuration {
 	public StringBuilder readContent() {
 		StringBuilder strb = new StringBuilder("");
 		try {
-			Scanner scanner = new Scanner(new FileInputStream(file_path));
+			Scanner scanner = new Scanner(new FileInputStream(file_path),charset);
 			scanner.useDelimiter(DELIMITER);
 			while(scanner.hasNextLine()) {
 				strb.append(scanner.nextLine()+"\r\n");

@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+import config.Configuration;
+
 public class Writer implements Configuration {
 	
 	Scanner scanner;

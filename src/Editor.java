@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import config.Configuration;
+
 public class Editor implements Configuration {
 
 	String output;

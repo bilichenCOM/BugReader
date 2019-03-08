@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import config.Configuration;
+
 public class GUI implements Configuration{
 	JFrame frame;
 	Panel epanel;

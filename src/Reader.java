@@ -2,6 +2,8 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+import config.Configuration;
+
 
 public class Reader implements Configuration {	
 	InputStreamReader reader;

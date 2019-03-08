@@ -1,3 +1,4 @@
+package config;
 
 public abstract interface Configuration {
 	public static final String DELIMITER = "\\|";
