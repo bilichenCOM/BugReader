@@ -30,6 +30,7 @@ public class ProductCodes {
 	
 	public String getProductName(String key) {
 		return key==null?"product code is empty":
+			!pcodes.containsKey(key)?"<no product for this code>":
 			pcodes.get(key);
 	}
 	

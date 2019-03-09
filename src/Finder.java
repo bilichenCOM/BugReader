@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 import config.Configuration;
@@ -7,13 +8,11 @@ public class Finder implements Configuration{
 	public static String vlookup(String text, StringBuilder table, int column, String delimiter) {
 		String match = "";
 		Scanner scanner = new Scanner(table.toString());
-		delimiter = delimiter.replace("\\", "");
+		scanner.useDelimiter(delimiter);
 		
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			
 			Scanner sc = new Scanner(line);
-			sc.useDelimiter(delimiter);
 			
 			if(sc.next().trim().equals(text.trim())) {
 				
@@ -39,3 +38,4 @@ public class Finder implements Configuration{
 		return vlookup(text, table, 2, DELIMITER);
 	}
 }
+

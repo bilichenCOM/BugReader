@@ -1,3 +1,5 @@
+package sys;
+
 import java.util.Scanner;
 
 import config.Configuration;
@@ -8,8 +10,6 @@ public class LineConcatenator implements Configuration{
 		StringBuilder strb = new StringBuilder();
 		Scanner s1 = new Scanner(lines1.toString());
 		Scanner s2 = new Scanner(lines2.toString());
-		
-		delimiter = delimiter.replace("\\", "");
 		
 		while(s1.hasNextLine()||s2.hasNextLine()) {
 		

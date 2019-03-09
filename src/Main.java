@@ -6,7 +6,7 @@ public class Main {
 //		engine.setupGUI();
 //		HttpClient httpclient = new HttpClient();
 //		httpclient.run();
-		new Engine().runLocal();
+		new Engine().run();
 	
 	}
 }
