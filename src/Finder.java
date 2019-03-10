@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import config.Configuration;
 
+@Deprecated
 public class Finder implements Configuration{
 	
 	public static String vlookup(String text, StringBuilder table, int column, String delimiter) {

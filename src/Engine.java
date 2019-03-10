@@ -1,23 +1,22 @@
 import config.Configuration;
-import model.ProductCodes;
+import model.Dimension;
+import report.ReportBuilder;
 import sys.CsvReader;
 
 public class Engine implements Configuration {
 	
-	public void run() {
-		CsvReader errors = new CsvReader("o1.csv");
-		CsvReader serials = new CsvReader("o2.csv");
-		ProductCodes pcodes = new ProductCodes("db/db.txt");
+	public void run(String entity) {
+		CsvReader bugreport = new CsvReader(entity+1+".csv");
+		Dimension product_serials = new Dimension(entity+2+".csv", 2, 3, "\\|", "utf-8");
+		Dimension product_names = new Dimension("db/db.txt", 1, 2,"\t","utf-8");
 		
-		StringBuilder date = errors.readColumn(1);
-		StringBuilder code = errors.readColumn(13);
-		StringBuilder serial = serials.readColumn(3);
-		StringBuilder errormessage = errors.readColumn(20);
+		StringBuilder date = bugreport.readColumn(2);
+		StringBuilder pcode = bugreport.readColumn(13);
+		StringBuilder errormessage = bugreport.readColumn(20);
 		
-		ReportBuilder builder = new ReportBuilder(date, code, serial, errormessage, pcodes);
-		StringBuilder report = builder.buildReport();
+		ReportBuilder report = new ReportBuilder(date, pcode, errormessage, product_names, product_serials);
+		System.out.println(report.buildReport());
 		
-		System.out.println(report);
 	}
 	
 	public void setupGUI() {

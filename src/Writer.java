@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import config.Configuration;
 
+@Deprecated
 public class Writer implements Configuration {
 	
 	Scanner scanner;

@@ -3,6 +3,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+@Deprecated
 public class HttpClient {
 	public void run() {
 		String domain = "https://stsystem.com.ua";

@@ -1,4 +1,5 @@
 import java.io.ByteArrayInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,7 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import config.Configuration;
-
+@Deprecated
 public class Editor implements Configuration {
 
 	String output;

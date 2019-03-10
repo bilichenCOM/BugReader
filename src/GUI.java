@@ -62,7 +62,7 @@ public class GUI implements Configuration{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			Engine engine = new Engine();
-			engine.runLocal();
+			engine.run("o");
 		}
 
 		@Override
@@ -90,8 +90,8 @@ public class GUI implements Configuration{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			Engine engine = new Engine();
-			engine.runNetwork();
+//			Engine engine = new Engine();
+//			engine.runNetwork();
 		}
 
 		@Override

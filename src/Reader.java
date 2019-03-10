@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import config.Configuration;
 
-
+@Deprecated
 public class Reader implements Configuration {	
 	InputStreamReader reader;
 	InputStreamReader reader_codes;
