@@ -6,7 +6,7 @@ public class Main {
 //		engine.setupGUI();
 //		HttpClient httpclient = new HttpClient();
 //		httpclient.run();
-		new Engine().run("o");
+		new Engine().run("o1.csv","o2.csv");
 	
 	}
 }

@@ -12,6 +12,7 @@ import javax.swing.JTable;
 
 import config.Configuration;
 
+@Deprecated
 public class GUI implements Configuration{
 	JFrame frame;
 	Panel epanel;
@@ -25,7 +26,6 @@ public class GUI implements Configuration{
 	
 	private int window_height=300;
 	private int window_width=400;
-	
 	
 	public GUI(int window_heigth, int window_width) {
 		this.window_height = window_heigth;
@@ -62,7 +62,7 @@ public class GUI implements Configuration{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			Engine engine = new Engine();
-			engine.run("o");
+			engine.run("o1.csv","o2.csv");
 		}
 
 		@Override

@@ -26,7 +26,12 @@ public class Dimension implements Configuration{
 		Scanner v_sc = new Scanner(values.toString());
 		
 		while(k_sc.hasNextLine()&&v_sc.hasNextLine()) {
-			dimension.put(k_sc.nextLine(), v_sc.nextLine());
+			String key = k_sc.nextLine();
+			String value = v_sc.nextLine();
+			if(dimension.containsKey(key))
+			dimension.put(key, dimension.get(key)+"; "+value);
+			else 
+			dimension.put(key, value);
 		}
 		k_sc.close();
 		v_sc.close();

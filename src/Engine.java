@@ -5,9 +5,9 @@ import sys.CsvReader;
 
 public class Engine implements Configuration {
 	
-	public void run(String entity) {
-		CsvReader bugreport = new CsvReader(entity+1+".csv");
-		Dimension product_serials = new Dimension(entity+2+".csv", 2, 3, "\\|", "utf-8");
+	public void run(String bugreport_file, String serials_file) {
+		CsvReader bugreport = new CsvReader(bugreport_file);
+		Dimension product_serials = new Dimension(serials_file, 2, 3, "\\|", "utf-8");
 		Dimension product_names = new Dimension("db/db.txt", 1, 2,"\t","utf-8");
 		
 		StringBuilder date = bugreport.readColumn(2);
