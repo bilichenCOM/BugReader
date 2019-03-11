@@ -13,8 +13,8 @@ public class LineConcatenator implements Configuration{
 		
 		while(s1.hasNextLine()||s2.hasNextLine()) {
 		
-			if(s1.hasNextLine()) strb.append(s1.nextLine()+delimiter);
-			if(s2.hasNextLine()) strb.append(s2.nextLine()+delimiter);
+			strb.append(s1.nextLine()+delimiter);
+			strb.append(s2.nextLine()+delimiter);
 			
 			strb.append("\r\n");
 		}

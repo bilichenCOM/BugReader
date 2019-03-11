@@ -1,12 +1,14 @@
+import sys.FileBrowser;
 
 public class Main {
 	
 	public static void main(String[] args) {
-//		Engine engine = new Engine();
-//		engine.setupGUI();
-//		HttpClient httpclient = new HttpClient();
-//		httpclient.run();
-		new Engine().run("o1.csv","o2.csv");
 	
+		String bugreport_file = FileBrowser.getInterfaceFileNames("", "*.csv")[0];
+		String serials_file = FileBrowser.getInterfaceFileNames("", "*.csv")[1];
+		
+		new Engine().run(bugreport_file, serials_file);
+		
+		System.out.println("files:["+bugreport_file+"]["+serials_file+"] were processed");
 	}
 }
