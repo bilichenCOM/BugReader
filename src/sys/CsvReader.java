@@ -24,11 +24,10 @@ public class CsvReader implements Configuration {
 	}
 	
 	public StringBuilder readColumn(int col_num) {
-		Scanner scanner = null;
 		StringBuilder strb = new StringBuilder("");
 		try {
 			
-			scanner = new Scanner(new FileInputStream(file_path),charset);
+			Scanner scanner = new Scanner(new FileInputStream(file_path),charset);
 			scanner.useDelimiter(delimiter);
 			
 			while(scanner.hasNextLine()) {
@@ -42,10 +41,9 @@ public class CsvReader implements Configuration {
 				if(ls.hasNext()) strb.append(ls.next()+"\r\n");
 				ls.close();
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("file:"+file_path+" - not found");
-		} finally {
-			scanner.close();
 		}
 		
 		return strb;

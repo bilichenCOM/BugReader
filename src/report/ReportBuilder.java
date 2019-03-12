@@ -42,6 +42,7 @@ public class ReportBuilder {
 			strb.append(product_name+" - ");
 			strb.append(err);
 			strb.append("\r\n");
+			
 		}
 		
 		d_sc.close();
@@ -77,6 +78,8 @@ public class ReportBuilder {
 			res_strb.append(it.next());
 			res_strb.append("\r\n");
 		}
+		
+		res_strb.append("\r\ntotal lines count: "+set.size());
 		
 		return res_strb;
 	}
