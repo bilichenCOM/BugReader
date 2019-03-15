@@ -5,14 +5,17 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import config.Configuration;
 import model.Dimension;
 
-public class ReportBuilder {
+public class ReportBuilder implements Configuration{
 	StringBuilder date;
 	StringBuilder pcode;
 	StringBuilder errormessage;
 	Dimension product_names;
 	Dimension product_serials;
+	
+	private final static String DELIMITER = Configuration.DELIMITER;
 	
 	public ReportBuilder(StringBuilder date, StringBuilder pcode, StringBuilder errormessage, Dimension product_names, Dimension product_serials) {
 		this.date=date;
@@ -36,10 +39,10 @@ public class ReportBuilder {
 			String err = err_sc.nextLine();
 			String product_name = product_names.getValueOf(pcode);
 			
-			strb.append(date +" - ");
-			strb.append(pcode+" - ");
-			strb.append(serial+" - ");
-			strb.append(product_name+" - ");
+			strb.append(date + DELIMITER);
+			strb.append(pcode+DELIMITER);
+			strb.append(serial+DELIMITER);
+			strb.append(product_name+DELIMITER);
 			strb.append(err);
 			strb.append("\r\n");
 			

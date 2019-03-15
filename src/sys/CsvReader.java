@@ -53,7 +53,7 @@ public class CsvReader implements Configuration {
 		StringBuilder strb = new StringBuilder("");
 		try {
 			Scanner scanner = new Scanner(new FileInputStream(file_path),charset);
-			scanner.useDelimiter(DELIMITER);
+			scanner.useDelimiter(delimiter);
 			while(scanner.hasNextLine()) {
 				strb.append(scanner.nextLine()+"\r\n");
 			}

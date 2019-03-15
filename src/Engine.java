@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -10,8 +11,9 @@ import model.Dimension;
 import report.ReportBuilder;
 import sys.CsvReader;
 import sys.FileIterator;
+import sys.HtmlData;
 
-public class Engine implements Configuration {
+public class Engine {
 	
 	public void run() {
 		FileIterator fi = new FileIterator("","*.csv");
@@ -32,23 +34,29 @@ public class Engine implements Configuration {
 			StringBuilder errormessage = bugreport.readColumn(20);
 			
 			ReportBuilder report_builder = new ReportBuilder(date, pcode, errormessage, product_names, product_serials);
-			report.append("files:["+bugreport_file+"]["+serials_file+"] has been processed\r\n");
+//			report.append("files:["+bugreport_file+"]["+serials_file+"] has been processed\r\n\r\n");
 			report.append(report_builder.buildReport());
-			report.append("\r\n");
+//			report.append("\r\n");
 			
 		}
 		
 		if(report.toString().equals("")) return;
 		System.out.println(report);
 		
+		HtmlData htmldata = new HtmlData(report, Configuration.DELIMITER);
+		System.out.println(htmldata.getHtmlData());
+		
 		try {
-			
-			FileOutputStream fos = new FileOutputStream(new File("report"+System.currentTimeMillis()+"-"+LocalDate.now()+".txt"));
-			OutputStreamWriter osw = new OutputStreamWriter(fos, Charset.forName(CHARSET));
-			osw.write(report.toString());
+			FileOutputStream fos = new FileOutputStream(new File("report"+System.currentTimeMillis()+"-"+LocalDate.now()+".html"));
+			OutputStreamWriter osw = new OutputStreamWriter(fos,Charset.forName(Configuration.CHARSET));
+			osw.write(htmldata.getHtmlData().toString());
 			osw.close();
 			fos.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File is currently being in use");
+			e.printStackTrace();
 		} catch (IOException e) {
+			System.out.println("IOException!");
 			e.printStackTrace();
 		}
 	}
