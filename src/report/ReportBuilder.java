@@ -9,35 +9,39 @@ import config.Configuration;
 import model.Dimension;
 
 public class ReportBuilder implements Configuration{
-	StringBuilder date;
+	
 	StringBuilder pcode;
-	StringBuilder errormessage;
+	Dimension dates;
 	Dimension product_names;
 	Dimension product_serials;
+	Dimension errors;
+	
+	private int line_count=1;
 	
 	private final static String DELIMITER = Configuration.DELIMITER;
+
 	
-	public ReportBuilder(StringBuilder date, StringBuilder pcode, StringBuilder errormessage, Dimension product_names, Dimension product_serials) {
-		this.date=date;
+	public ReportBuilder(StringBuilder pcode, Dimension dates, Dimension serials, Dimension names, Dimension err) {
 		this.pcode=pcode;
-		this.errormessage=errormessage;
-		this.product_names=product_names;
-		this.product_serials=product_serials;
+		this.dates=dates;
+		this.errors=err;
+		this.product_names=names;
+		this.product_serials=serials;
 	}
 	
 	public StringBuilder buildReport() {
 		StringBuilder strb = new StringBuilder();
-		
-		Scanner d_sc = new Scanner(date.toString());
-		Scanner c_sc = new Scanner(pcode.toString());
-		Scanner err_sc = new Scanner(errormessage.toString());
-		
-		while(d_sc.hasNextLine()&&c_sc.hasNextLine()&&err_sc.hasNextLine()) {
-			String date = d_sc.nextLine();
-			String pcode = c_sc.nextLine();
+
+		Scanner c_sc = new Scanner(removeDuplicates(pcode,"\\r\\n").toString());
+		c_sc.useDelimiter(";");
+		int count = 1;
+		while(c_sc.hasNext()) {
+			String pcode = c_sc.next();
+			
+			String date = dates.getValueOf(pcode);
 			String serial = product_serials.getValueOf(pcode);
-			String err = err_sc.nextLine();
 			String product_name = product_names.getValueOf(pcode);
+			StringBuilder err = removeDuplicates(new StringBuilder(errors.getValueOf(pcode)),";");
 			
 			strb.append(date + DELIMITER);
 			strb.append(pcode+DELIMITER);
@@ -46,18 +50,19 @@ public class ReportBuilder implements Configuration{
 			strb.append(err);
 			strb.append("\r\n");
 			
+			count++;
+			
 		}
+		setLineCount(count-1);
+		strb.append("errors count: "+(line_count));
 		
-		d_sc.close();
 		c_sc.close();
-		err_sc.close();
 		
-		strb = removeDuplicates(strb);
 		
 		return strb;	
 	}
 	
-	private StringBuilder removeDuplicates(StringBuilder in_strb) {
+	private StringBuilder removeDuplicates(StringBuilder in_strb, String delimiter) {
 		StringBuilder res_strb = new StringBuilder();
 		
 		Set<String> set = new TreeSet<>(new Comparator<String>() {
@@ -69,9 +74,10 @@ public class ReportBuilder implements Configuration{
 		});
 		
 		Scanner scanner = new Scanner(in_strb.toString());
+		scanner.useDelimiter(delimiter);
 		
-		while(scanner.hasNextLine()) {
-			set.add(scanner.nextLine());
+		while(scanner.hasNext()) {
+			set.add(scanner.next());
 		}
 		scanner.close();
 		
@@ -79,11 +85,15 @@ public class ReportBuilder implements Configuration{
 		
 		while(it.hasNext()) {
 			res_strb.append(it.next());
-			res_strb.append("\r\n");
+			res_strb.append(";");
 		}
 		
-		res_strb.append("\r\ntotal lines count: "+set.size());
-		
 		return res_strb;
+	}
+	public int getSize() {
+		return this.line_count;
+	}
+	private void setLineCount(int line_count) {
+		this.line_count=line_count;
 	}
 }

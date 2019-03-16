@@ -24,20 +24,14 @@ public class Engine {
 			String bugreport_file = fi.nextFilePath();
 			String serials_file = (fi.hasNextFile())?fi.nextFilePath():"";
 	
+			StringBuilder pcodes = new CsvReader(bugreport_file).readColumn(13);
+			Dimension dates = new Dimension(bugreport_file,13,1,false);
+			Dimension serials = new Dimension(serials_file,2,3);
+			Dimension names = new Dimension(Configuration.DB_DIRECTORY,1,2,"\t",true,"utf-8");
+			Dimension errors = new Dimension(bugreport_file,13,20);
 			
-			CsvReader bugreport = new CsvReader(bugreport_file);
-			Dimension product_serials = new Dimension(serials_file, 2, 3, "\\|", "utf-8");
-			Dimension product_names = new Dimension(Configuration.DB_DIRECTORY, 1, 2,"\t","utf-8");
-			
-			StringBuilder date = bugreport.readColumn(2);
-			StringBuilder pcode = bugreport.readColumn(13);
-			StringBuilder errormessage = bugreport.readColumn(20);
-			
-			ReportBuilder report_builder = new ReportBuilder(date, pcode, errormessage, product_names, product_serials);
-//			report.append("files:["+bugreport_file+"]["+serials_file+"] has been processed\r\n\r\n");
-			report.append(report_builder.buildReport());
-//			report.append("\r\n");
-			
+			ReportBuilder report_builder = new ReportBuilder(pcodes, dates, serials, names, errors);
+			report = report_builder.buildReport();
 		}
 		
 		if(report.toString().equals("")) return;
